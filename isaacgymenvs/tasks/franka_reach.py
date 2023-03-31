@@ -403,8 +403,8 @@ class FrankaReach(VecTask):
         self.gym.refresh_actor_root_state_tensor(self.sim)
         self.gym.refresh_dof_state_tensor(self.sim)
         self.gym.refresh_rigid_body_state_tensor(self.sim)
-        self.gym.refresh_jacobian_tensors(self.sim)
-        self.gym.refresh_mass_matrix_tensors(self.sim)
+        # self.gym.refresh_jacobian_tensors(self.sim) # needed for osc, seem to break with shelf env
+        # self.gym.refresh_mass_matrix_tensors(self.sim)
 
         # Refresh states
         self._update_states()
