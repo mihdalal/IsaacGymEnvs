@@ -391,6 +391,12 @@ def axis_angle_from_quat_naive(quat):
     angle = 2.0 * torch.atan2(mag, quat[:, 3])
     axis_angle = axis * angle.unsqueeze(-1)
 
+    angle = torch.norm(axis_angle, dim=1).unsqueeze(-1)
+    axis = axis_angle / angle
+    axis_angle = torch.where(
+        angle > math.pi, (angle - 2 * math.pi) * axis, axis_angle
+    )
+
     return axis_angle
 
 
